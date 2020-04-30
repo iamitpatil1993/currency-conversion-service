@@ -33,6 +33,22 @@ public class CurrencyConversionController implements InitializingBean {
                                                                           final @PathVariable BigDecimal quantity) {
         final CurrencyConversionRequest request = new CurrencyConversionRequest(from, to, quantity);
         final Optional<CurrencyConversionValue> conversionValueOptional = conversionService.convertCurrency(request);
+        return handleCurrencyConversionResponse(conversionValueOptional);
+    }
+
+    /**
+     * Uses Spring cloud feign to communicate with currency-exchange-service
+     */
+    @GetMapping(path = "/currency-conversion/feign/from/{from}/to/{to}/quantity/{quantity}")
+    public SuccessResponse<CurrencyConversionValue> handleConvertCurrencyWithFiegn(final @PathVariable String from,
+                                                                                   final @PathVariable String to,
+                                                                                   final @PathVariable BigDecimal quantity) {
+        final CurrencyConversionRequest request = new CurrencyConversionRequest(from, to, quantity);
+        final Optional<CurrencyConversionValue> conversionValueOptional = conversionService.convertCurrencyUsingFeign(request);
+        return handleCurrencyConversionResponse(conversionValueOptional);
+    }
+
+    private SuccessResponse<CurrencyConversionValue> handleCurrencyConversionResponse(Optional<CurrencyConversionValue> conversionValueOptional) {
         if (conversionValueOptional.isEmpty()) {
             throw new ResourceNotFoundException("Conversion mapping not found");
         }
