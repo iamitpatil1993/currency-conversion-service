@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  */
 // spring.application.name here is not important for now, unless we use eureka naming server and ribbon.
 // For now url parameter is only required and usefule
+// Feign client interfaces are declared as  beans in application context with fully qualified name as a bean id
 @FeignClient(name = "currency-exchange-service", url = "localhost:8000")
 public interface FeignCurrencyExchangeProxy {
 

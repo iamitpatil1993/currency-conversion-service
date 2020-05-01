@@ -4,9 +4,6 @@ import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Optional;
 
-import feign.FeignException;
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.code4cause.microservices.currencyconversionservice.currencyexchange.CurrencyExchangeProxy;
 import org.code4cause.microservices.currencyconversionservice.currencyexchange.FeignCurrencyExchangeProxy;
 import org.code4cause.microservices.currencyconversionservice.dto.SuccessResponse;
@@ -18,9 +15,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.math.BigDecimal;
-import java.util.Objects;
-import java.util.Optional;
+import feign.FeignException;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  *
