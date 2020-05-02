@@ -2,6 +2,7 @@ package org.code4cause.microservices.currencyconversionservice;
 
 import java.util.ConcurrentModificationException;
 
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -27,6 +28,9 @@ public class CommonConfig {
 	 * @return {@link RestTemplate}
 	 */
 	@Bean
+	 // This tells spring cloud to use ribbon for load balancing. This annotation can be used on webClient as well
+	// and works exactly similar way. Clients of this RestTemplate uses the rest client in normal way
+	@LoadBalanced  
 	public RestTemplate restTemplate() {
 		RestTemplate restTemplate = new RestTemplate();
 		return restTemplate;

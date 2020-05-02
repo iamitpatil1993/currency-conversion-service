@@ -1,5 +1,8 @@
 package org.code4cause.microservices.currencyconversionservice.web.rest.controller;
 
+import java.math.BigDecimal;
+import java.util.Optional;
+
 import org.code4cause.microservices.currencyconversionservice.dto.SuccessResponse;
 import org.code4cause.microservices.currencyconversionservice.model.CurrencyConversionRequest;
 import org.code4cause.microservices.currencyconversionservice.model.CurrencyConversionValue;
@@ -11,9 +14,6 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.math.BigDecimal;
-import java.util.Optional;
 
 @RestController
 public class CurrencyConversionController implements InitializingBean {

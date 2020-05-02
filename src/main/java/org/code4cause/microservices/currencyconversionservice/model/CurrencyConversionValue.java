@@ -1,8 +1,8 @@
 package org.code4cause.microservices.currencyconversionservice.model;
 
-import lombok.Data;
-
 import java.math.BigDecimal;
+
+import lombok.Data;
 
 @Data
 public class CurrencyConversionValue {
