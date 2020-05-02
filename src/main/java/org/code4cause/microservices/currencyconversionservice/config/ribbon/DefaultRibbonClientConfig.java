@@ -1,6 +1,7 @@
 package org.code4cause.microservices.currencyconversionservice.config.ribbon;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.context.annotation.Bean;
 
 import com.netflix.client.config.IClientConfig;
@@ -23,9 +24,31 @@ import com.netflix.loadbalancer.PingUrl;
  * our local environment).
  * </p>
  * 
+ * <p>
+ * There can be separate config class per ribbon client and can have separate
+ * {@link IRule}, {@link IClientConfig} and {@link IPing} beans per ribbon
+ * client. So that we can customize each {@link RibbonClient} separately as we
+ * wish.
+ * </p>
+ * 
+ * <p>
+ * We should not annotate this with @Configuration because, then this
+ * bean/config will become config in root ApplicationContext. and will get
+ * shared by all RibbonClients which we do not want. We want this bean to be
+ * part of RibbonClient's own ApplicationContext.
+ * </p>
+ * <p>
+ * refer:
+ * </p>
+ * <ul>
+ * <li>https://stackoverflow.com/questions/39587317/difference-between-ribbonclient-and-loadbalanced</li>
+ * <li>https://spring.io/guides/gs/spring-cloud-loadbalancer/</li>
+ * </ul>
+ * 
  * @author amipatil
  *
  */
+
 public class DefaultRibbonClientConfig {
 
 	@Autowired
